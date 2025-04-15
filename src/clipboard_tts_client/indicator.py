@@ -1,77 +1,64 @@
-#!/usr/bin/python
-
-import signal
-import gi
-gi.require_version('Gtk', '3.0')
-gi.require_version('AppIndicator3', '0.1')
-from gi.repository import Gtk, AppIndicator3
-from PyQt5.QtWidgets import QApplication
+#!/usr/bin/python3
+import sys
 import os
+import signal
 
-from .lib_funcs import tts_remove_task
-from .lib_funcs import tts_play
+from PyQt5.QtWidgets import QApplication, QSystemTrayIcon, QMenu, QAction
+from PyQt5.QtGui import QIcon
 
-last_play_id=None;
+from clipboard_tts_client.lib_funcs import tts_remove_task, tts_play  # Removi o ponto antes do import
 
-def quit(source):
-    Gtk.main_quit();
+last_play_id = None
 
-def play(source):
+def play():
     global last_play_id
-    # Verifica se QApplication já existe
     app = QApplication.instance()
     if app is None:
-        app = QApplication([])  # Inicializa QApplication se não existir
-    
-    clipboard = app.clipboard()  # Acessa o clipboard
-    text = clipboard.text()  # Obtém o texto do clipboard
-    
-    # Suponho que tts_play seja outra função que você implementou
+        app = QApplication([])
+
+    clipboard = app.clipboard()
+    text = clipboard.text()
     last_play_id = tts_play(text)
 
-def remove(source):
+def remove():
     global last_play_id
-    msg=tts_remove_task(last_play_id);
-    #print(msg);
-    
+    msg = tts_remove_task(last_play_id)
+    # print(msg)
+
+def quit_app():
+    QApplication.quit()
+
 def main():
-    # Criação do indicador
-    indicator = AppIndicator3.Indicator.new(
-        "meu-indicador",                       # ID do indicador
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'icons', 'logo.png'), 
-        AppIndicator3.IndicatorCategory.APPLICATION_STATUS
-    )
+    app = QApplication(sys.argv)
 
-    # Criação do menu
-    menu = Gtk.Menu()
+    # Criar o ícone da bandeja
+    tray_icon = QSystemTrayIcon()
+    icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'icons', 'logo.png')
+    tray_icon.setIcon(QIcon(icon_path))
 
-    # Adicionando play
-    item_play = Gtk.MenuItem(label="Play clipboard")
-    item_play.connect("activate", play)
-    menu.append(item_play)
+    # Criar o menu da bandeja
+    menu = QMenu()
 
-    # Adicionando play
-    item_remove = Gtk.MenuItem(label="Remove last task")
-    item_remove.connect("activate", remove)
-    menu.append(item_remove)
+    play_action = QAction("Play clipboard")
+    play_action.triggered.connect(play)
+    menu.addAction(play_action)
 
-    # Adicionando exit
-    item_quit = Gtk.MenuItem(label="Exit")
-    item_quit.connect("activate", quit)
-    menu.append(item_quit)
+    remove_action = QAction("Remove last task")
+    remove_action.triggered.connect(remove)
+    menu.addAction(remove_action)
 
-    # Mostrar o menu
-    menu.show_all()
+    quit_action = QAction("Exit")
+    quit_action.triggered.connect(quit_app)
+    menu.addAction(quit_action)
 
-    # Associar o menu ao indicador
-    indicator.set_menu(menu)
+    tray_icon.setContextMenu(menu)
+    tray_icon.show()
 
-    # Exibir o indicador
-    indicator.set_status(AppIndicator3.IndicatorStatus.ACTIVE)
-
-    # Manter o aplicativo rodando
+    # Capturar Ctrl+C no terminal
     signal.signal(signal.SIGINT, signal.SIG_DFL)
-    Gtk.main()
+
+    sys.exit(app.exec_())
 
 if __name__ == '__main__':
-    main();
+    main()
+
