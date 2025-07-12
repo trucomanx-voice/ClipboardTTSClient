@@ -4,18 +4,30 @@ import pathlib
 
 here = pathlib.Path(__file__).parent.resolve()
 
+from clipboard_tts_client.about import (
+    __version__,
+    __package__,
+    __program_name__,
+    __author__,
+    __email__,
+    __description__,
+    __url_source__,
+    __url_funding__,
+    __url_bugs__,
+)
+
 # Get the long description from the README file
 long_description = (here / "README.md").read_text(encoding="utf-8");
 
 setup(
-    name="clipboard_tts_client",
-    version="0.1.0",
-    description="Program that collects text from clipboard and converts it to speech using tts-program-server",
-    author="Fernando Pujaico Rivera",
-    author_email="fernando.pujaico.rivera@gmail.com",
-    maintainer='Fernando Pujaico Rivera',
-    maintainer_email='fernando.pujaico.rivera@gmail.com',
-    url="https://github.com/trucomanx/ClipboardTTSClient",
+    name=__package__,
+    version=__version__,
+    description=__description__,
+    author=__author__,
+    author_email=__email__,
+    maintainer=__author__,
+    maintainer_email=__email__,
+    url=__url_source__,
     keywords="tts, server",  # Optional
     long_description=long_description,  # Optional
     long_description_content_type="text/markdown",  # Optional (see note above)
@@ -27,7 +39,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'clipboard-tts-indicator=clipboard_tts_client.indicator:main'
+            __program_name__+'='+__package__+'.indicator:main'
         ],
     },
     classifiers=[
@@ -37,12 +49,12 @@ setup(
     ],
     python_requires='>=3.8',
     package_data={
-        'clipboard_tts_client': ['icons/logo.png'],
+        __package__: ['icons/logo.png'],
     },
     include_package_data=True, 
     project_urls={  # Optional
-        "Bug Reports": "https://github.com/trucomanx/ClipboardTTSClient/issues",
-        "Funding": "https://trucomanx.github.io/en/funding.html",
-        "Source": "https://github.com/trucomanx/ClipboardTTSClient/",
+        "Bug Reports": __url_bugs__,
+        "Funding": __url_funding__,
+        "Source": __url_source__,
     },
 )

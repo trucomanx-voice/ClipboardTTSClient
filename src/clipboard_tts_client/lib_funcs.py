@@ -42,7 +42,7 @@ def tts_play(text):
     DATA={
         "text": text, 
         "language": detectar_linguagem(text),
-        "split_pattern": [". ","; ","\n\n","\n\r\n"], 
+        "split_pattern": ["\n\n","\n\r\n",". ","; "], 
         "speed":1.25 
     }
         

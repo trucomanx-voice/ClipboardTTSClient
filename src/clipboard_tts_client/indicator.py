@@ -7,6 +7,10 @@ from PyQt5.QtWidgets import QApplication, QSystemTrayIcon, QMenu, QAction
 from PyQt5.QtGui import QIcon
 
 from clipboard_tts_client.lib_funcs import tts_remove_task, tts_play  # Ajuste se estiver num pacote
+import clipboard_tts_client.about as about
+
+from clipboard_tts_client.desktop import create_desktop_file, create_desktop_directory, create_desktop_menu
+from clipboard_tts_client.modules.wabout  import show_about_window
 
 class ClipboardTtsClientApp(QApplication):
     def __init__(self, sys_argv):
@@ -53,9 +57,26 @@ class ClipboardTtsClientApp(QApplication):
 def main():
     # Captura de sinal Ctrl+C no terminal
     signal.signal(signal.SIGINT, signal.SIG_DFL)
+    
+    create_desktop_directory()    
+    create_desktop_menu()
+    create_desktop_file('~/.local/share/applications')
+    
+    for n in range(len(sys.argv)):
+        if sys.argv[n] == "--autostart":
+            create_desktop_directory(overwrite = True)
+            create_desktop_menu(overwrite = True)
+            create_desktop_file('~/.config/autostart', overwrite=True)
+            return
+        if sys.argv[n] == "--applications":
+            create_desktop_directory(overwrite = True)
+            create_desktop_menu(overwrite = True)
+            create_desktop_file('~/.local/share/applications', overwrite=True)
+            return
+    
 
     app = ClipboardTtsClientApp(sys.argv)
-    app.setApplicationName("clipboard_tts_client") # xprop WM_CLASS # *.desktop -> StartupWMClass  
+    app.setApplicationName(about.__package__) # xprop WM_CLASS # *.desktop -> StartupWMClass  
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
