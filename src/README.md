@@ -17,7 +17,7 @@ Execute `which clipboard-tts-indicator` to see where it was installed, probably 
 
 ### Installing and adding the program to the Linux startup session
 
-Adding bar indicator to Linux start session (`~/.config/autostart/clipboard-tts-indicator.desktop`)
+Installing and adding a bar indicator to Linux startup session (`~/.config/autostart/clipboard-tts-indicator.desktop`)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/trucomanx/ClipboardTTSClient/main/install_linux_indicator_session.sh | sh
