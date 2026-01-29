@@ -1,3 +1,4 @@
 /src/clipboard_tts_client.egg-info
 /src/dist
 /src/clipboard_tts_client/__pycache__
+/src/clipboard_tts_client/modules/__pycache__/
