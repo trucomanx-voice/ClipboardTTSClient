@@ -1,25 +1,21 @@
-# clipboard-tts-client
+# clipboard-tts-indicator
 
-Program that collects text from clipboard and converts it to speech using tts-program-server.
+This package provides a text-to-speech client program to interact with the server `text-to-speech-program`.
 
-## Install from source
-Installing text-to-speech client program
+![logo](screenshot.png)
 
-```bash
-git clone https://github.com/trucomanx/ClipboardTTSClient.git
-cd ClipboardTTSClient
-pip install -r requirements.txt
-cd src
-python3 setup.py sdist
-pip install dist/clipboard_tts_client-*.tar.gz
-```
+## 1. Installing
 
-## Add a program to the Linux start session
-Adding client GUI program to Linux start session (`~/.config/autostart/clipboard-tts-client.desktop`)
+To install the package from [PyPI](https://pypi.org/project/clipboard_tts_client/), follow the instructions below:
+
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/trucomanx/ClipboardTTSClient/main/install_linux_program_session.sh | sh
+pip install --upgrade clipboard_tts_client
 ```
+
+Execute `which clipboard-tts-indicator` to see where it was installed, probably in `/home/USERNAME/.local/bin/clipboard-tts-indicator`.
+
+### Installing and adding the program to the Linux startup session
 
 Adding bar indicator to Linux start session (`~/.config/autostart/clipboard-tts-indicator.desktop`)
 
@@ -27,10 +23,24 @@ Adding bar indicator to Linux start session (`~/.config/autostart/clipboard-tts-
 curl -fsSL https://raw.githubusercontent.com/trucomanx/ClipboardTTSClient/main/install_linux_indicator_session.sh | sh
 ```
 
-## Using
+### Using
 
+To start, use the command below:
 
 ```bash
-clipboard-tts-client
+clipboard-tts-indicator
 ```
+## 2. More information
 
+If you want more information go to [doc](https://github.com/trucomanx/ClipboardTTSClient/blob/main/doc) directory
+
+## 3. Buy me a coffee
+
+If you find this tool useful and would like to support its development, you can buy me a coffee!  
+Your donations help keep the project running and improve future updates.  
+
+[☕ Buy me a coffee](https://ko-fi.com/trucomanx) 
+
+## 4. License
+
+This project is licensed under the GPL license. See the `LICENSE` file for more details.
