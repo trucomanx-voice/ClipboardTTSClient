@@ -1,6 +1,7 @@
 import os
-import clipboard_tts_client.about as about
 import subprocess
+import clipboard_tts_client.about as about
+from clipboard_tts_client.modules.resources import resource_path
 
 
 def update_desktop_database(desktop_path):
@@ -16,9 +17,9 @@ def update_desktop_database(desktop_path):
     except FileNotFoundError:
         print("The command 'update-desktop-database' was not found. Verify that the package 'desktop-file-utils' is installed.")
 
-def create_desktop_file(desktop_path, overwrite=False, program_name=None):
-    base_dir_path = os.path.dirname(os.path.abspath(__file__))
-    icon_path = os.path.join(base_dir_path, 'icons', 'logo.png')
+def create_desktop_file(desktop_path, overwrite=False, program_name=None, extras=""):
+
+    icon_path = resource_path('icons', 'logo.png')
 
     if program_name is None:
         __program_name = about.__program_name__
@@ -30,7 +31,7 @@ def create_desktop_file(desktop_path, overwrite=False, program_name=None):
     desktop_entry = f"""[Desktop Entry]
 Name={__program_name}
 Comment={about.__description__}
-Exec={script_path}
+Exec={script_path} %f
 Terminal=false
 Type=Application
 Icon={icon_path}
@@ -39,6 +40,7 @@ Categories=Education;ResearchTools;
 Keywords=organizer;python;
 Encoding=UTF-8
 StartupWMClass={about.__package__}
+{extras}
 """
     path = os.path.expanduser(os.path.join(desktop_path,f"{__program_name}.desktop"))
     

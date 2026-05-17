@@ -21,7 +21,7 @@ clipboard-tts-indicator
 Installing `clipboard-tts-indicator` program
 
 ```bash
-git clone https://github.com/trucomanx/ClipboardTTSClient.git
+git clone https://github.com/trucomanx-voice/ClipboardTTSClient.git
 cd ClipboardTTSClient
 pip install -r requirements.txt
 cd src

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "clipboard_tts_client"
-version = "0.1.2"
+version = "0.1.3"
 description = "Program that collects text from clipboard and converts it to speech using tts-program-server"
 readme = "README.md"
 authors = [{name = "Fernando Pujaico Rivera", email = "fernando.pujaico.rivera@gmail.com"}]
@@ -24,10 +24,10 @@ dependencies = [
 ]
 
 [project.urls]
-"Bug Reports" = "https://github.com/trucomanx/ClipboardTTSClient/issues"
+"Bug Reports" = "https://github.com/trucomanx-voice/ClipboardTTSClient/issues"
 "Funding" = "https://trucomanx.github.io/en/funding.html"
-"Documentation" = "https://github.com/trucomanx/ClipboardTTSClient/doc"
-"Source" = "https://github.com/trucomanx/ClipboardTTSClient"
+"Documentation" = "https://github.com/trucomanx-voice/ClipboardTTSClient/tree/main/doc"
+"Source" = "https://github.com/trucomanx-voice/ClipboardTTSClient"
 
 [project.scripts]
 "clipboard-tts-indicator" = "clipboard_tts_client.indicator:main"
@@ -36,4 +36,4 @@ dependencies = [
 packages = ["clipboard_tts_client", "clipboard_tts_client.modules"]
 
 [tool.setuptools.package-data]
-"clipboard_tts_client" = ["icons/logo.png"]
+"clipboard_tts_client" = ["icons/*.png"]

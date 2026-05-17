@@ -2,7 +2,7 @@
 
 This package provides a text-to-speech client program to interact with the server `text-to-speech-program`.
 
-![logo](https://raw.githubusercontent.com/trucomanx/ClipboardTTSClient/main/screenshot.png)
+![logo](https://raw.githubusercontent.com/trucomanx-voice/ClipboardTTSClient/main/screenshot.png)
 
 ## 1. Installing
 
@@ -20,7 +20,7 @@ Execute `which clipboard-tts-indicator` to see where it was installed, probably 
 Installing and adding a bar indicator to Linux startup session (`~/.config/autostart/clipboard-tts-indicator.desktop`)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/trucomanx/ClipboardTTSClient/main/install_linux_indicator_session.sh | sh
+curl -fsSL https://raw.githubusercontent.com/trucomanx-voice/ClipboardTTSClient/main/install_linux_indicator_session.sh | sh
 ```
 
 ### Using
@@ -30,9 +30,10 @@ To start, use the command below:
 ```bash
 clipboard-tts-indicator
 ```
+
 ## 2. More information
 
-If you want more information go to [doc](https://github.com/trucomanx/ClipboardTTSClient/blob/main/doc) directory
+If you want more information go to [doc](https://github.com/trucomanx-voice/ClipboardTTSClient/blob/main/doc) directory
 
 ## 3. Buy me a coffee
 

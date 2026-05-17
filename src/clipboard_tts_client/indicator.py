@@ -12,7 +12,8 @@ from clipboard_tts_client.lib_funcs import tts_remove_task, tts_play  # Ajuste s
 import clipboard_tts_client.about as about
 
 from clipboard_tts_client.desktop import create_desktop_file, create_desktop_directory, create_desktop_menu
-from clipboard_tts_client.modules.wabout  import show_about_window
+from clipboard_tts_client.modules.wabout    import show_about_window
+from clipboard_tts_client.modules.resources import resource_path
 
 class ClipboardTtsClientApp(QApplication):
     def __init__(self, sys_argv):
@@ -22,23 +23,24 @@ class ClipboardTtsClientApp(QApplication):
         
         self.last_play_id = None
         self.menu = None
+        self.icon_path = None
         self.init_tray()
 
     def init_tray(self):
         # Ícone
-        icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'icons', 'logo.png')
-        self.tray_icon = QSystemTrayIcon(QIcon(icon_path), self)
+        self.icon_path = resource_path('icons', 'logo.png')
+        self.tray_icon = QSystemTrayIcon(QIcon(self.icon_path), self)
 
         # Menu
         self.menu = QMenu()
 
         self.play_action = QAction("Play clipboard")
-        self.play_action.setIcon(QIcon.fromTheme("media-playback-start"))
+        self.play_action.setIcon(QIcon(resource_path('icons', 'play-button.png')))
         self.play_action.triggered.connect(self.play_clipboard)
         self.menu.addAction(self.play_action)
 
         self.remove_action = QAction("Remove last task")
-        self.remove_action.setIcon(QIcon.fromTheme("list-remove"))
+        self.remove_action.setIcon(QIcon(resource_path('icons', 'dialog-error.png')))
         self.remove_action.triggered.connect(self.remove_last_task)
         self.menu.addAction(self.remove_action)
 
@@ -46,19 +48,19 @@ class ClipboardTtsClientApp(QApplication):
 
         # restart server linux
         self.restart_linux_action = QAction("Restart server in linux", self.menu)
-        self.restart_linux_action.setIcon(QIcon.fromTheme("media-playlist-repeat"))
+        self.restart_linux_action.setIcon(QIcon(resource_path('icons', 'arrow-cw.png')))
         self.restart_linux_action.triggered.connect(self.restart_linux_service)
         self.menu.addAction(self.restart_linux_action)        
         
         # Coffee
         self.coffee_action = QAction("☕ Buy me a coffee", self.menu)
-        self.coffee_action.setIcon(QIcon.fromTheme("emblem-favorite"))
+        self.coffee_action.setIcon(QIcon(resource_path('icons', 'emote-love.png')))
         self.coffee_action.triggered.connect(self.open_coffee_link)
         self.menu.addAction(self.coffee_action)
         
         # About
         self.about_action = QAction("🌟 About", self.menu)
-        self.about_action.setIcon(QIcon.fromTheme("help-about"))
+        self.about_action.setIcon(QIcon(resource_path('icons', 'status_help.png')))
         self.about_action.triggered.connect(self.show_about)
         self.menu.addAction(self.about_action)
                 
@@ -66,7 +68,7 @@ class ClipboardTtsClientApp(QApplication):
         self.menu.addSeparator()
 
         self.quit_action = QAction("❌ Exit")
-        self.quit_action.setIcon(QIcon.fromTheme("application-exit"))
+        self.quit_action.setIcon(QIcon(resource_path('icons', 'application-exit.png')))
         self.quit_action.triggered.connect(self.quit)
         self.menu.addAction(self.quit_action)
 
@@ -97,10 +99,7 @@ class ClipboardTtsClientApp(QApplication):
             "url_bugs": about.__url_bugs__
         }
         
-        base_dir_path = os.path.dirname(os.path.abspath(__file__))
-        logo_path = os.path.join(base_dir_path, 'icons', 'logo.png')
-        
-        show_about_window(data, logo_path)
+        show_about_window(data, self.icon_path)
         
         
     def play_clipboard(self):
