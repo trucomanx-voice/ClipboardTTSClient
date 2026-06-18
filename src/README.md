@@ -27,6 +27,7 @@ pipx install clipboard_tts_client
 
 > [!IMPORTANT]
 > To install with python 3.12 use: `pipx install --python /path/to/venvs/python3.12/bin/python3.12 clipboard_tts_client`
+> Upgrade with `pipx upgrade clipboard_tts_client`
 
 If you need to upgrade later: `pipx upgrade clipboard_tts_client`
 
