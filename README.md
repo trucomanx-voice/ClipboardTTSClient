@@ -4,16 +4,31 @@ This package provides a text-to-speech client program to interact with the serve
 
 ![logo](screenshot.png)
 
+> [!WARNING]
+> Tested only on Python 3.10–3.12. Newer versions may break due to audio dependencies (pydub / audioop stack).
+
 ## 1. Installing
 
 To install the package from [PyPI](https://pypi.org/project/clipboard_tts_client/), follow the instructions below:
 
+### With pip
 
 ```bash
 pip install --upgrade clipboard_tts_client
 ```
 
 Execute `which clipboard-tts-indicator` to see where it was installed, probably in `/home/USERNAME/.local/bin/clipboard-tts-indicator`.
+
+### With pipx (recommended for desktop applications)
+
+```bash
+pipx install clipboard_tts_client
+```
+
+> [!IMPORTANT]
+> To install with python 3.12 use: `pipx install --python /path/to/venvs/python3.12/bin/python3.12 clipboard_tts_client`
+
+If you need to upgrade later: `pipx upgrade clipboard_tts_client`
 
 ### Installing and adding the program to the Linux startup session
 
