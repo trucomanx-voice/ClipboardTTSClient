@@ -36,4 +36,4 @@ dependencies = [
 packages = ["clipboard_tts_client", "clipboard_tts_client.modules"]
 
 [tool.setuptools.package-data]
-"clipboard_tts_client" = ["icons/*.png"]
+"clipboard_tts_client" = ["icons/*.png", "icons/*.svg"]
