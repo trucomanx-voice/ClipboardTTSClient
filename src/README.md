@@ -20,7 +20,8 @@ Execute `which clipboard-tts-indicator` to see where it was installed, probably 
 Installing and adding a bar indicator to Linux startup session (`~/.config/autostart/clipboard-tts-indicator.desktop`)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/trucomanx-voice/ClipboardTTSClient/main/install_linux_indicator_session.sh | sh
+pip install --upgrade clipboard_tts_client
+clipboard_tts_client --autostart
 ```
 
 ### Using

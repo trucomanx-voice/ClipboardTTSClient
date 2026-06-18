@@ -30,7 +30,8 @@ class ClipboardTtsClientApp(QApplication):
         # Ícone
         self.icon_path = resource_path('icons', 'logo.png')
         self.tray_icon = QSystemTrayIcon(QIcon(self.icon_path), self)
-
+        self.setWindowIcon(QIcon(self.icon_path)) 
+        
         # Menu
         self.menu = QMenu()
 
